@@ -45,6 +45,7 @@ app.post('/create', parseForm ,(req, res)=> {
     // reading the data from the form
     res.redirect('/create/success');
 });
+
 app.get('/create/success', (req, res)=> {
     console.log(stuff.all());
     res.send('success!!!')

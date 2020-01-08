@@ -14,10 +14,20 @@ function all() {
 }
 
 function create(name, joyVal) {
-    let givesJoy = false;
-    if (joyVal) {
-        givesJoy = true;
-    }
+    // let givesJoy = joyVal || 'off';
+
+    // let givesJoy;
+    // if (joyVal){
+    //     givesJoy = true;
+    // }else {
+    //     givesJoy = false;
+    // }
+    
+    let givesJoy =joyVal? true : false;
+    
+    //after question mark the value is always true
+
+
     const newItem = {
         name,
         givesJoy
