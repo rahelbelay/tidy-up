@@ -25,7 +25,12 @@ const parseForm = bodyParser.urlencoded({
     extended: true
 });
 
-const { stuff } = require('./models');
+
+
+const { stuff,
+        users 
+} = require('./models');
+
 
 app.get('/', (req, res)=> {
     res.send('HELOOOOOOOO!!!!!')
@@ -50,7 +55,29 @@ app.get('/create/success', (req, res)=> {
     console.log(stuff.all());
     res.send('success!!!')
 });
+app.get('/signup', (req, res)=> {
+    res.render('user-auth');
+})
+
+app.post('/signup',parseForm, (req, res)=>{
+    console.log(req.body);
+    const {username, password} = req.body;
+    users.create(username, password);
+    // console.log('body')
+});
+
+app.get('/login', (req,res)=> {
+    res.render('user-auth');
+})
+app.post('/login', parseForm, (req, res)=> {
+    const {username, password} = req.body;
+    const didLogin = users.login(username, password);
+    console.log(didLogin)
+});
+
+
 
 server.listen(PORT, ()=> {
     console.log(`Listining at ${PORT}`)
 });
+
